@@ -1,0 +1,244 @@
+@font-face {
+    font-family: "kumbh";
+    src: url("/fonts/Kumbh_Sans/KumbhSans-VariableFont_YOPQ\,wght.ttf ");
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "kumbh";
+}
+
+body{
+    height: 98vh;
+    font-size: 16px;
+}
+
+:root{
+    --white: hsl(0, 0%, 100%);
+    --black: hsl(0, 0%, 0%);
+    --black-light: hsla(0, 0%, 0%, 0.75);
+    --orange: hsl(26, 100%, 55%);
+    --orange-pale: hsl(25, 100%, 94%);
+    --grayish-blue: hsl(220, 14%, 75%);
+    --grayish-blue-light: hsl(223, 64%, 98%);
+    --grayish-blue-dark: hsl(219, 9%, 45%);
+    --blue-dark: hsl(220, 13%, 13%);
+
+
+}
+.product-page{
+    height: 100%;
+    background-color: var(--white);
+}
+
+/*header section*/
+.header{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    padding: 2rem 4rem;
+    align-items: center;
+}
+
+.top-menu{
+    font-weight: 400;
+}
+
+.top-menu ul{
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.top-menu li a{
+    text-decoration: none;
+    color: var(--grayish-blue-dark);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* TODO MODIFY HERE, NOT THE RIGHT HOVER  TRANSITION, JUST A DUMMY */
+.top-menu li a:hover{
+    color: var(--orange);
+}
+
+.cart-and-profile{
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.cart{
+    cursor: pointer;
+}
+.profile{
+    width: 50px;
+    cursor: pointer;
+}
+.profile img{
+    width: 100%;
+}
+
+.header::after{
+    content: '';
+    grid-column: 1/4;
+    margin-top: 1rem;
+    border: 1px solid var(--grayish-blue);
+    border-width: thin;
+}
+
+/*main content section*/
+.main-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+/*product grid section*/
+.product-grid{
+    display: grid;
+    gap: 30px;
+    width: 50%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 5fr 1fr;
+}
+
+/*product images(left side)*/
+.product-image{
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.product-image img{
+    width: 100%;
+    border-radius: 20px;
+}
+
+.product-preview-lst{
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+.product-preview-lst ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+.product-preview-lst img{
+    width: 80px;
+    border-radius: 10px;
+}
+
+/*product info(right side)*/
+.product-info{
+    grid-column: 2/3;
+    grid-row: 1/3;
+    display: flex;
+    padding: 40px 0;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.product-brand{
+    color: var(--orange);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.product-name{
+    font-weight: 700;
+    font-size: 3rem;
+}
+.product-description{
+    color: var(--grayish-blue-dark);
+}
+.product-price-section{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.product-price-and-discount{
+    display: flex;
+    gap: 20px;
+}
+.product-actual-price{
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.product-discount{
+    color: var(--orange);
+    width: fit-content;
+    font-weight: 700;
+    padding: 0.3rem 0.5rem;
+    border-radius: 5px;
+    background-color: var(--orange-pale);
+}
+.product-previous-price{
+    font-weight: 700;
+    color: var(--grayish-blue);
+    text-decoration: line-through;
+}
+
+/*cart and quantity section*/
+.product-cart-section{
+    display:flex;
+    align-items: center;
+}
+
+.product-select-quantity{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: var(--grayish-blue-light);
+    border-radius: 10px;
+    width: fit-content;
+}
+
+/* delete default plus and minus button from input number */
+.product-select-quantity input[type="number"]{
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+.product-select-quantity input[type="number"]::-webkit-inner-spin-button,
+.product-select-quantity input[type="number"]::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+}
+
+.product-select-quantity button, .product-select-quantity input{
+    border: none;
+    background-color: var(--grayish-blue-light);
+}
+
+.product-select-quantity input{
+    pointer-events: none;
+    font-weight: 700;
+    font-size:1.1rem;
+    text-align: center;
+    width: 80px;
+}
+.product-select-quantity input:focus{
+    outline: none;
+}
+
+.product-select-quantity button{
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.product-select-quantity button:hover{
+    opacity: 0.7;
+}
+
+/* TODO CHANGE SVG COLOR, CHANGE HTML TO ACHIEVE IT */
+.product-add-to-cart button{
+    background-color: var(--orange);
+    cursor: pointer;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 10px 30px;
+    border-radius: 10px;
+    transition: opacity 0.2s ease-in-out;
+}
+.product-add-to-cart button:hover{
+    opacity: 0.7;
+}
