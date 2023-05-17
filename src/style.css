@@ -36,8 +36,14 @@ body{
 .header{
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
-    padding: 2rem 4rem;
+    margin: 2rem 4rem;
+    margin-bottom: 0rem;
+    padding-bottom: 2rem;
     align-items: center;
+    border-bottom: thin solid var(--grayish-blue);
+    border-width: 70%;
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
 }
 
 .top-menu{
@@ -50,33 +56,32 @@ body{
     gap: 2rem;
 }
 
-.top-menu li a{
+.top-menu ul li a{
+    position: relative;
+    padding: 0 10px;
     text-decoration: none;
     color: var(--grayish-blue-dark);
     cursor: pointer;
+    pointer-events: auto;
+    
+}
+
+.top-menu ul li a::after{
+    content: '';
+    position: absolute;
+    background-color: var(--orange);
+    height: 5px;
+    width: 0;
+    left: 0;
+    bottom: -3.1rem;
     transition: all 0.2s ease-in-out;
 }
 
-/* TODO MODIFY HERE, NOT THE RIGHT HOVER  TRANSITION, JUST A DUMMY */
-.top-menu ul li a{
-    position: relative;
-}
-.top-menu ul li a::after{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 0%;
-    content: '.';
-    color: transparent;
-    background: var(--orange);
-    height: 5px;
-    transition: all 0.5s ease-in-out;
-}
 .top-menu ul li a:hover::after{
     width: 100%;
 }
+
+/*cart and profile section*/
 
 .cart-and-profile{
     justify-self: end;
@@ -95,13 +100,7 @@ body{
     width: 100%;
 }
 
-.header::after{
-    content: '';
-    grid-column: 1/4;
-    margin-top: 1rem;
-    border: 1px solid var(--grayish-blue);
-    border-width: thin;
-}
+
 
 /*main content section*/
 .main-content{
