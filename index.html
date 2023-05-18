@@ -42,8 +42,34 @@
         </ul>
       </div>
       <div class="cart-and-profile">
-        <div class="cart">
-          <img src="./images/icon-cart.svg" alt="cart icon">
+        <div class="cart-section">
+          <img id="cart_icon" src="./images/icon-cart.svg" alt="cart icon">
+          <div class="cart-item-quantity-preview">3</div>
+          <div class="cart-container">
+            <div class="cart-title">Cart</div>
+            <div class="cart-item-empty">Your cart is empty</div>
+            <div class="cart-item-section">
+              <div class="cart-item-lst">
+                <div class="cart-item">
+                  <div class="cart-item-img">
+                    <img src="./images/image-product-1-thumbnail.jpg" alt="cart image thumbnail">
+                  </div>
+                  <div class="cart-item-description">
+                    <div class="cart-item-name">Fall Limited Edition Sneakers</div>
+                    <div class="cart-item-price">$125.00</div>
+                    <div class="cart-item-quantity">x 3</div>
+                    <div class="cart-item-total-price">$375.00</div>
+                  </div>
+                  <div class="cart-item-delete-option">
+                    <button><img src="./images/icon-delete.svg" alt="delete button thrash bin"></button>
+                  </div>  
+                </div>
+              </div>
+              <div class="cart-checkout">
+                <button class="cart-btn">Checkout</button>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="profile">
           <img src="./images/image-avatar.png" alt="profile icon">
@@ -75,7 +101,7 @@
               <button onclick="this.parentNode.querySelector('#product_quantity').stepUp()" ><img src="./images/icon-plus.svg" alt="plus"></button><!---->
             </div>
             <div class="product-add-to-cart">
-              <button><img src="./images/icon-cart-white.svg" alt="cart icon"> Add to cart</button>
+              <button class="cart-btn"><img src="./images/icon-cart-white.svg" alt="cart icon"> Add to cart</button>
             </div>
           </div>
         </div>
