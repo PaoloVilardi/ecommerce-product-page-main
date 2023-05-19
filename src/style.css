@@ -30,7 +30,161 @@ body{
 .product-page{
     height: 100%;
     background-color: var(--white);
+    position: relative;
 }
+
+.page-mask{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--black);
+    opacity: 0;
+    display: none;
+}
+
+.page-disabled{
+    opacity: 0.7;
+    display: block;
+}
+
+
+
+/*lightbox section*/
+.lightbox-section{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    /* display: flex; */
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.lightbox-enabled{
+    display: flex;
+}
+
+.product-lightbox{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.product-image-section-lightbox{
+    width: 500px;
+    position: relative;
+}
+
+.product-lightbox-close-btn{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    
+}
+.lightbox-close-btn{
+    background-color: inherit;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease-in-out;
+}
+.lightbox-close-btn svg{
+    transform: scale(1.4);
+    
+}
+.lightbox-close-btn svg path{
+    fill: var(--white);
+}
+.lightbox-close-btn svg path:hover{
+    fill: var(--orange);
+}
+
+/*main image lightbox*/
+#lightbox_image{
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+}
+
+/*button next and previous*/
+.btn-carousel{
+    border-radius: 50%;
+    padding: 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.svg-carousel-path{
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-carousel:hover .svg-carousel-path{
+    stroke: var(--orange);
+}
+
+
+#btn_carousel_prev{
+    position: absolute;
+    top: 50%;
+    left: -30px;
+}
+#btn_carousel_next{
+    position: absolute;
+    top: 50%;
+    right: -30px;
+}
+
+/*preview list lightbox*/
+
+.product-lightbox-preview-lst ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+}
+.product-lightbox-preview-lst ul li{
+    width: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.product-lightbox-preview-element img{
+    width: 100%;
+    height: 100%;
+}
+
+.product-lightbox-preview-lst ul li::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+}
+.product-lightbox-preview-lst ul li:hover:after{
+    opacity: 0.7;
+}
+
+
+.product-lightbox-preview-element{
+    pointer-events: auto;
+}
+
+
 
 /*header section*/
 .header{
@@ -248,6 +402,7 @@ body{
 .product-image{
     grid-column: 1/2;
     grid-row: 1/2;
+    cursor: pointer;
 }
 .product-image img{
     width: 100%;
@@ -259,13 +414,15 @@ body{
     grid-row: 2/3;
 }
 
+
+
 .product-preview-lst ul{
     list-style-type: none;
     display: flex;
     justify-content: space-between;
 }
 
-.product-preview-lst ul li{
+.product-preview-lst ul li{ 
     width: 80px;
     border-radius: 10px;
     overflow: hidden;
