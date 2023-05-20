@@ -2,6 +2,12 @@ const productPreviewList = document.querySelector('.product-preview-lst');
 const productPreviewElementArray = document.querySelectorAll('.product-preview-element');
 const productImg = document.querySelector('.product-image');
 
+function changeVisibilityAndDisplay(div, visibility, display){
+    div.style.visibility = visibility;
+    div.style.display = display;
+    return div
+}
+
 productPreviewElementArray.forEach(element => {
     element.addEventListener('click', (e) => {
         e.preventDefault();
@@ -150,7 +156,18 @@ btnNextLightbox.addEventListener('click', (e)=>{
 //setting cart quantity preview
 //(for the future) it should iterate over the entire cart and 
 //have the total quantity of all the items inside of it
+const cartItemEmpty = changeVisibilityAndDisplay(document.querySelector('.cart-item-empty'), "visible",  "block");
 
+const cartItemSection = document.querySelector('.cart-item-section');
+
+const cartItemList = document.querySelector('.cart-item-lst');
+
+function checkCart(){
+    if(cartItemList.children.length <= 0){
+        changeVisibilityAndDisplay(cartItemSection, 'hidden', 'none');
+        changeVisibilityAndDisplay(cartItemEmpty, 'visible', 'block');
+    }
+}
 
 function createCartItem(img, name, price, quantity) {
     //item div
@@ -213,6 +230,7 @@ function createCartItem(img, name, price, quantity) {
         e.preventDefault();
         //delete current item from the list
         cartItemDiv.parentElement.removeChild(cartItemDiv);
+        checkCart();
     });
 
     cartItemDeleteOpt.appendChild(deleteBtn);
@@ -243,18 +261,9 @@ function createCartCheckout(){
     return cartCheckoutDiv;
 }
 
-function changeVisibilityAndDisplay(div, visibility, display){
-    div.style.visibility = visibility;
-    div.style.display = display;
-    return div
-}
 
 //cart empty made visible
-const cartItemEmpty = changeVisibilityAndDisplay(document.querySelector('.cart-item-empty'), "visible",  "block");
 
-const cartItemSection = document.querySelector('.cart-item-section');
-
-const cartItemList = document.querySelector('.cart-item-lst');
 let cartItem = createCartItem("./images/image-product-1-thumbnail.jpg", "hoih", "23", "3")
 cartItemList.appendChild(cartItem);
 
