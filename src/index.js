@@ -208,6 +208,13 @@ function createCartItem(img, name, price, quantity) {
     deleteImg.src = "./images/icon-delete.svg";
     deleteImg.alt = "delete button thrash bin";
     deleteBtn.appendChild(deleteImg);
+
+    deleteBtn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        //delete current item from the list
+        cartItemDiv.parentElement.removeChild(cartItemDiv);
+    });
+
     cartItemDeleteOpt.appendChild(deleteBtn);
 
     //link all the parts
