@@ -247,11 +247,13 @@ body{
 }
 .cart-section{
     position: relative;
+    cursor: pointer;
 }
 #cart_icon{
     pointer-events: auto;
     cursor: pointer;
     width: 30px;
+    z-index: 100;
 }
 .cart-item-quantity-preview{
     background-color: var(--orange);
@@ -266,13 +268,25 @@ body{
     right: -10px;
 }
 
-/*TODO make the display status continue while hovering on the cart and its neighbourhood*/
 /*cart section*/
+
+/*section just to make it hover*/
+.cart-container-bg{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 100px;
+    width: 80px;
+    pointer-events: auto;
+
+}
 .cart-container{
     
     background-color: var(--white);
     box-shadow: 0px 1px 38px var(--black-light);
-
+    cursor: default;
     pointer-events: auto;
     width: 400px;
     height: 200px;
@@ -287,15 +301,13 @@ body{
     transform: translate(-50%, 20%);
 }
 
- #cart_icon:hover ~ .cart-container, .cart-container:hover{
+ #cart_icon:hover ~ .cart-container, .cart-container:hover, .cart-container-bg:hover + .cart-container{
     display: grid;
 } 
 
 .cart-title{
     font-weight: 700;
     align-self: center;
-    /* padding-left: 20px;
-    padding-bottom: 15px; */
     padding: 20px;
     border-bottom: thin solid var(--grayish-blue);
 }
