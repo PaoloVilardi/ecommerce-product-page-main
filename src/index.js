@@ -147,6 +147,125 @@ btnNextLightbox.addEventListener('click', (e)=>{
     
 });
 
+//setting cart quantity preview
+//(for the future) it should iterate over the entire cart and 
+//have the total quantity of all the items inside of it
+
+
+function createCartItem(img, name, price, quantity) {
+    //item div
+    let cartItemDiv = document.createElement('div');
+    cartItemDiv.classList.add('cart-item');
+
+    //img thumbnail
+    let cartItemImgDiv = document.createElement('div');
+    cartItemImgDiv.classList.add('cart-item-img');
+    let cartItemImg = document.createElement('img');
+    cartItemImg.src = img;
+    cartItemImg.alt = "cart image thumbnail";
+    cartItemImgDiv.appendChild(cartItemImg);
+
+    //description
+    let cartItemDesc = document.createElement('div');
+    cartItemDesc.classList.add('cart-item-description');
+
+    //name
+    let cartItemName = document.createElement('div');
+    cartItemName.classList.add('cart-item-name');
+    cartItemName.appendChild(document.createTextNode(name));
+
+    //price
+    let cartItemPrice = document.createElement('div');
+    cartItemPrice.classList.add('cart-item-price');
+    cartItemPrice.appendChild(document.createTextNode('$' + price));
+
+    //p element
+    let p = document.createElement('p');
+    p.appendChild(document.createTextNode('p'));
+
+    //quantity
+    let cartItemQuantity = document.createElement('div');
+    cartItemQuantity.classList.add('cart-item-quantity');
+    cartItemQuantity.appendChild(document.createTextNode(quantity));
+    
+    //total price
+    let cartItemTotalPrice = document.createElement('div');
+    cartItemTotalPrice.classList.add('cart-item-total-price');
+    let totalPrice = parseInt(quantity) * parseFloat(price);
+    cartItemTotalPrice.appendChild(document.createTextNode('$' + totalPrice));
+
+    cartItemDesc.appendChild(cartItemName);
+    cartItemDesc.appendChild(cartItemPrice);
+    cartItemDesc.appendChild(p);
+    cartItemDesc.appendChild(cartItemQuantity);
+    cartItemDesc.appendChild(cartItemTotalPrice);
+    
+    //delete option
+    let cartItemDeleteOpt = document.createElement('div');
+    cartItemDeleteOpt.classList.add('cart-item-delete-option');
+    let deleteBtn = document.createElement('button');
+    let deleteImg = document.createElement('img');
+    deleteImg.src = "./images/icon-delete.svg";
+    deleteImg.alt = "delete button thrash bin";
+    deleteBtn.appendChild(deleteImg);
+    cartItemDeleteOpt.appendChild(deleteBtn);
+
+    //link all the parts
+    cartItemDiv.appendChild(cartItemImgDiv);
+    cartItemDiv.appendChild(cartItemDesc);
+    cartItemDiv.appendChild(cartItemDeleteOpt);
+
+    return cartItemDiv;
+}
+function createCartCheckout(){
+    let cartCheckoutDiv = document.createElement('div');
+    cartCheckoutDiv.classList.add('cart-checkout');
+
+    let checkoutBtn = document.createElement('button');
+    checkoutBtn.classList.add('cart-btn');
+    checkoutBtn.appendChild(document.createTextNode('Checkout'));
+
+    checkoutBtn.addEventListener('click', (e) =>{
+        e.preventDefault();
+        console.log('CHECKOUT!');
+        alert('Checkout Done!');
+    });
+
+    cartCheckoutDiv.appendChild(checkoutBtn);
+    
+    return cartCheckoutDiv;
+}
+
+function changeVisibilityAndDisplay(div, visibility, display){
+    div.style.visibility = visibility;
+    div.style.display = display;
+    return div
+}
+
+//cart empty made visible
+const cartItemEmpty = changeVisibilityAndDisplay(document.querySelector('.cart-item-empty'), "visible",  "block");
+
+const cartItemSection = document.querySelector('.cart-item-section');
+
+const cartItemList = document.querySelector('.cart-item-lst');
+let cartItem = createCartItem("./images/image-product-1-thumbnail.jpg", "hoih", "23", "3")
+cartItemList.appendChild(cartItem);
+
+cartItemSection.appendChild(createCartCheckout());
+
+if(cartItemList.children.length > 0){
+    changeVisibilityAndDisplay(cartItemEmpty, "hidden", "none");
+    changeVisibilityAndDisplay(cartItemSection, "visible", "flex");
+}
+
+const cartQuantityPreview = document.querySelector('.cart-item-quantity-preview');
+const cartItemQuantity = document.querySelector('.cart-item-quantity');
+if(cartItemQuantity.firstChild !== null){
+    cartQuantityPreview.firstChild.data = cartItemQuantity.firstChild.data;
+} else {
+    cartQuantityPreview.style.visibility = 'hidden';
+}
+
 // const userCart = document.querySelector('.cart');
 // userCart.addEventListener('click', (e) =>{
 //     e.preventDefault();
