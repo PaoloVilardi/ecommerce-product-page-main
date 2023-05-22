@@ -197,6 +197,13 @@ function removeProductFromCart(name){
     myCart = myCart.filter(item => item.name !== name);
 }
 
+function updateIconQuantity(quantity){
+    let previousQuantity = cartQuantityPreview.firstChild.data;
+    let newQuantity = parseInt(previousQuantity) - parseInt(quantity);
+    cartQuantityPreview.firstChild.data = newQuantity;
+
+}
+
 function createCartItemDiv(img, name, price, quantity) {
     //item div
     let cartItemDiv = document.createElement('div');
@@ -261,8 +268,11 @@ function createCartItemDiv(img, name, price, quantity) {
         
         //delete item from cart
         removeProductFromCart(name);
+        //update quantity for the icon
+        updateIconQuantity(cartItemDiv.querySelector('.cart-item-quantity').firstChild.data);
         //delete current item from the list
         cartItemDiv.parentElement.removeChild(cartItemDiv);
+        
         checkCart();
     });
 
@@ -317,6 +327,40 @@ const addToCartBtn = document.querySelector('#add_to_cart');
 const productInfoDiv = document.querySelector('.product-info');
 const productQuantity = document.querySelector('#product_quantity');
 
+function modifyItemQuantityFromCart(element, index, quantity){
+    element.quantity = parseInt(element.quantity) + parseInt(quantity);
+    myCart[index] = element;
+    
+}
+
+function modifyItemQuantityFromCartDiv(el, quantity){
+
+    //update icon quantity preview
+    let previousIconQuantity = cartQuantityPreview.firstChild.data;
+    let updatedIconQuantity = parseInt(previousIconQuantity) + parseInt(quantity);
+    cartQuantityPreview.firstChild.data = updatedIconQuantity;
+
+    //update item quantity and total price
+
+    let itemArray = Array.from(cartItemList.querySelectorAll('.cart-item'));
+    itemArray.forEach(element => {
+        let elementName = element.querySelector('.cart-item-name').firstChild.data;
+        if(el.name === elementName){
+            //modify quantity
+            let quantityDiv = element.querySelector('.cart-item-quantity');
+            let newQuantity = parseInt(quantityDiv.firstChild.data) + parseInt(quantity)
+            quantityDiv.firstChild.data = newQuantity;
+
+            //modify total price
+            let priceDiv = element.querySelector('.cart-item-price');
+            let totalPriceDiv = element.querySelector('.cart-item-total-price');
+            let newTotalPrice = parseInt((priceDiv.firstChild.data).replace('$', '')) * newQuantity
+            totalPriceDiv.firstChild.data = newTotalPrice + '$';
+        }
+        
+    });
+
+}
 
 addToCartBtn.addEventListener('click', (e) =>{
     e.preventDefault();
@@ -326,10 +370,27 @@ addToCartBtn.addEventListener('click', (e) =>{
     let productActualPrice = productInfoDiv.querySelector('.product-actual-price').firstChild.data.replace('$', '');
     let quantity = productQuantity.value;
     let newItem = new CartItem(productImg, productName, productActualPrice, quantity);
-    addProductToCart(newItem);
-    addCartItemListDiv(newItem);
-    checkCart();
+    let elementFound;
+    let index = myCart.findIndex(element =>{
+        if(element.name === newItem.name){
+            elementFound = element;
+            return true;
+        }
+        else {
+            return false;
+        }
+    });
 
+    let alreadyPresent = index >= 0 ? true : false;
+
+    if(alreadyPresent){
+        modifyItemQuantityFromCart(elementFound, index, quantity);
+        modifyItemQuantityFromCartDiv(elementFound, quantity);
+    } else {
+        addProductToCart(newItem);
+        addCartItemListDiv(newItem);
+        checkCart();
+    }    
 });
 
 //cart empty made visible

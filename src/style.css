@@ -2,15 +2,16 @@
     font-family: "kumbh";
     src: url("/fonts/Kumbh_Sans/KumbhSans-VariableFont_YOPQ\,wght.ttf ");
 }
+@import url('https://fonts.cdnfonts.com/css/kumbh-sans');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "kumbh";
+    font-family: "Kumbh Sans", sans-serif;
 }
 
 body{
-    height: 98vh;
+    height: 94vh;
     font-size: 16px;
 }
 
@@ -375,6 +376,7 @@ body{
 .cart-checkout button{
     background-color: var(--orange);
     cursor: pointer;
+    border: none;
     pointer-events: auto;
     color: var(--white);
     width: 100%;
@@ -584,6 +586,7 @@ body{
 .product-add-to-cart button{
     box-shadow: 0px 30px 18px var(--orange-pale);
     background-color: var(--orange);
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
