@@ -44,7 +44,7 @@
       <div class="cart-and-profile">
         <div class="cart-section">
           <img id="cart_icon" src="./images/icon-cart.svg" alt="cart icon">
-          <div class="cart-item-quantity-preview">3</div>
+          <div class="cart-item-quantity-preview">0</div>
           <div class="cart-container-bg"></div>
           <div class="cart-container">
             <div class="cart-title">Cart</div>
@@ -99,11 +99,11 @@
           <div class="product-cart-section">
             <div class="product-select-quantity">
               <button onclick="this.parentNode.querySelector('#product_quantity').stepDown()" ><img src="./images/icon-minus.svg" alt="minus"></button><!---->
-              <input type="number" name="product_quantity" id="product_quantity" placeholder="0"><!---->
+              <input type="number" name="product_quantity" id="product_quantity" placeholder="1" min="1" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"><!---->
               <button onclick="this.parentNode.querySelector('#product_quantity').stepUp()" ><img src="./images/icon-plus.svg" alt="plus"></button><!---->
             </div>
             <div class="product-add-to-cart">
-              <button class="cart-btn"><img src="./images/icon-cart-white.svg" alt="cart icon"> Add to cart</button>
+              <button id="add_to_cart" class="cart-btn"><img src="./images/icon-cart-white.svg" alt="cart icon"> Add to cart</button>
             </div>
           </div>
         </div>

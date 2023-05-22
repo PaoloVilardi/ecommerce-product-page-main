@@ -289,7 +289,7 @@ body{
     cursor: default;
     pointer-events: auto;
     width: 400px;
-    height: 200px;
+    height: 220px;
     border-radius: 10px;
     display: none;
     grid-template-rows: 1fr 3fr;
@@ -326,7 +326,7 @@ body{
 
 .cart-item-section{
     visibility: hidden;
-    padding: 0  20px;
+    padding: 20px;
     display: none;
     flex-direction: column;
     align-self: center;
